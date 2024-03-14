@@ -8,29 +8,32 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/boton_saltar"
+        android:id="@+id/btNext"
         android:layout_width="193dp"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
         android:layout_gravity="center_horizontal|bottom"
         android:backgroundTint="@android:color/system_accent1_800"
-        android:text="Saltar" />
+        android:onClick="linear_layout"
+        android:text="@string/btNext"
+        android:textColor="@color/white"
+        tools:targetApi="s" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="221dp"
-        android:layout_height="272dp"
+        android:layout_width="290dp"
+        android:layout_height="433dp"
         android:layout_gravity="center"
         app:srcCompat="@drawable/wolf_2323884" />
 
     <TextView
-        android:id="@+id/idTxt1"
-        android:layout_width="match_parent"
+        android:id="@+id/txtWelcome"
+        android:layout_width="538dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
         android:fontFamily="@font/bungee_shade"
-        android:text="welcome"
+        android:text="@string/txtWelcome"
         android:textAlignment="center"
         android:textColor="@color/material_dynamic_primary10"
-        android:textSize="71sp" />
+        android:textSize="65dp" />
 
 </FrameLayout>

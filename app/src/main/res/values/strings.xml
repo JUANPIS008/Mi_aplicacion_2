@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">Mi_aplicacion_2</string>
+    <string name="app_name" translatable="false">Mi_aplicacion_2</string>
+    <string name="title_activity_main2" translatable="false">MainActivity2</string>
+    <string name="txtLogin">Login</string>
+    <string name="login_in">Login in</string>
+    <string name="input_usuario">Mail</string>
+    <string name="btSing_in">Sing in</string>
+    <string name="txtPassword">Password</string>
+    <string name="txtMail">Mail</string>
+    <string name="txtWelcome">Welcome</string>
+    <string name="btNext">Next</string>
 </resources>
