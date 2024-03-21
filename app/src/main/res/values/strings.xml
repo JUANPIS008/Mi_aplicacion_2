@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Mi_aplicacion_2</string>
+    <string name="app_name" translatable="false">MajesticView</string>
     <string name="title_activity_main2" translatable="false">MainActivity2</string>
     <string name="txtLogin">Login</string>
     <string name="login_in">Login in</string>
@@ -9,4 +9,18 @@
     <string name="txtMail">Mail</string>
     <string name="txtWelcome">Welcome</string>
     <string name="btNext">Next</string>
+    <string name="idpersonalInformation">Personal Information\n</string>
+    <string name="idtelephone">Thelephone number</string>
+    <string name="iddateBirth">Date of birth</string>
+    <string name="idemail">Email</string>
+    <string name="idMale">Male\n</string>
+    <string name="idFamale">Famale</string>
+    <string name="idUndefined">Undefined</string>
+    <string name="idTerms">Accept terms and conditions</string>
+    <string name="idCreat">Crate a MajeticView account</string>
+    <string name="idEnter">Enter your name</string>
+    <string name="idName">Name</string>
+    <string name="idLastname">Last name\n</string>
+    <string name="idRegistter">Register</string>
+
 </resources>

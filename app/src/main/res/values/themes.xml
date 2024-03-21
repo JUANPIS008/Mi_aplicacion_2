@@ -6,4 +6,13 @@
     </style>
 
     <style name="Theme.Mi_aplicacion_2" parent="Base.Theme.Mi_aplicacion_2" />
+
+    <style name="Theme.Mi_aplicacion_2.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Mi_aplicacion_2.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Mi_aplicacion_2.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/abstract_envelope"
@@ -26,6 +28,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_weight="1"
         android:hint="@string/txtMail"
+        android:textColorHint="@color/material_dynamic_primary10"
         android:textColorLink="@color/design_default_color_primary" />
 
     <EditText
@@ -37,27 +40,35 @@
         android:ems="10"
         android:hint="@string/txtPassword"
         android:inputType="textPassword"
+        android:textColorHint="@color/material_dynamic_primary10"
         android:textColorLink="@color/black" />
 
     <Button
+        android:id="@+id/btLogin_in"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
         android:layout_weight="1"
-        android:backgroundTint="@color/material_dynamic_primary10"
+        android:backgroundTint="@android:color/system_accent1_800"
+        android:onClick="onClick"
         android:stateListAnimator="@android:anim/accelerate_decelerate_interpolator"
         android:text="@string/login_in"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        tools:targetApi="s" />
 
     <Button
         android:id="@+id/btSing_in"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:backgroundTint="@color/material_dynamic_primary10"
+        android:backgroundTint="@android:color/system_accent1_800"
+        android:onClick="onClick"
         android:stateListAnimator="@android:anim/accelerate_decelerate_interpolator"
         android:text="@string/btSing_in"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        tools:targetApi="s" />
 
     <TextView
         android:id="@+id/texto_olvidaste_contrasena"
