@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/abstract_envelope"
-    tools:context=".MainActivity">
+    tools:context=".fragment_inicio">
 
+    <!-- TODO: Update blank fragment layout -->
     <Button
         android:id="@+id/btNext"
         android:layout_width="193dp"
         android:layout_height="80dp"
         android:layout_gravity="center_horizontal|bottom"
         android:backgroundTint="@android:color/system_accent1_800"
-        android:onClick="linear_layout"
         android:text="@string/btNext"
         android:textColor="@color/white"
         tools:targetApi="s" />

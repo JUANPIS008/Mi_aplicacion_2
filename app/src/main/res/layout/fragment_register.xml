@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/abstract_envelope">
+    android:background="@drawable/abstract_envelope"
+    tools:context=".fragment_register">
 
     <TextView
         android:id="@+id/textView7"
@@ -92,7 +93,6 @@
         android:layout_marginTop="41dp"
         android:layout_marginEnd="143dp"
         android:backgroundTint="@android:color/system_accent1_800"
-        android:onClick="constrain_layout"
         android:text="@string/btNext"
         android:textColor="@color/white"
         tools:targetApi="s" />

@@ -22,5 +22,7 @@
     <string name="idName">Name</string>
     <string name="idLastname">Last name\n</string>
     <string name="idRegistter">Register</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -6,7 +6,8 @@
     android:id="@+id/idTerminos"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/abstract_envelope">
+    android:background="@drawable/abstract_envelope"
+    tools:context=".fragment_register2">
 
     <TextView
         android:id="@+id/textView6"
