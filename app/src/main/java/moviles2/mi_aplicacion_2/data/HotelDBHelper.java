@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.os.Build;
+import moviles2.mi_aplicacion_2.data.TelefonoContract.TelefonoEntry;
 
 import androidx.annotation.Nullable;
 
@@ -28,6 +29,43 @@ public class HotelDBHelper extends SQLiteOpenHelper{
                 HuespedEntry.col_nombre+" TEXT NOT NULL, " +
                 HuespedEntry.col_email+" TEXT NOT NULL, " +
                 "UNIQUE ("+HuespedEntry.col_usuario+"), UNIQUE("+HuespedEntry.col_email+"))");
+
+        sqLiteDatabase.execSQL("CREATE TABLE " + TelefonoEntry.TABLE_NAME + "("+
+                HuespedEntry.col_usuario+" TEXT NOT NULL, " +
+                TelefonoEntry.col_telefono+ " NUMERIC(12,0) NOT NULL,"+
+                "UNIQUE ("+TelefonoEntry.col_telefono+"),"+
+                "FOREIGN KEY ("+HuespedEntry.col_usuario+") " +
+                "REFERENCES "+ HuespedEntry.TABLE_NAME + "("+ HuespedEntry.col_usuario+") " +
+                "ON DELETE CASCADE)");
+    }
+
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+        if (!db.isReadOnly()){
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
+                db.setForeignKeyConstraintsEnabled(true);
+            }else{
+                db.execSQL(" PRAGMA foreign_keys=ON");
+            }
+        }
+    }
+
+    public long saveHuesped(Huesped huesped, Telefono telefono) {
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        sqLiteDatabase.insert(
+                HuespedEntry.TABLE_NAME,
+                null,
+                huesped.toContentValues());
+        return saveTelefono( telefono );
+    }
+
+    public long saveTelefono(Telefono telefono){
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        return sqLiteDatabase.insert(
+                TelefonoEntry.TABLE_NAME,
+                null,
+                telefono.toContentValues());
     }
 
     public Cursor getTodosHuesped() {
@@ -40,6 +78,17 @@ public class HotelDBHelper extends SQLiteOpenHelper{
                         null,
                         null,
                         null);
+    }
+
+    public Cursor getUsuarioTelefono(){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder builder = new SQLiteQueryBuilder();
+        String tables = HuespedEntry.TABLE_NAME+" INNER JOIN "+TelefonoEntry.TABLE_NAME+
+                " on "+HuespedEntry.TABLE_NAME+"."+HuespedEntry.col_usuario+" = "+TelefonoEntry.TABLE_NAME+"."+HuespedEntry.col_usuario;
+        builder.setTables( tables);
+        //String columnas[] = new String["user","name","tel"];
+        //return builder.query( db, columnas,null,null,null,null,null );
+        return builder.query( db, null,null,null,null,null,null );
     }
 
     public Cursor getHuespedByUser(String user) {
