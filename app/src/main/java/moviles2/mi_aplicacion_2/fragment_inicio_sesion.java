@@ -102,7 +102,7 @@ public class fragment_inicio_sesion extends Fragment implements View.OnClickList
             }
 
         } else if (v.getId() == btSing_in.getId()) {
-            Navigation.findNavController(v).navigate(R.id.fragment_register);
+            Navigation.findNavController(v).navigate(R.id.fragment_register2);
 
         } else {
             Toast.makeText(getContext(), "Credenciales invalidas", Toast.LENGTH_LONG).show();

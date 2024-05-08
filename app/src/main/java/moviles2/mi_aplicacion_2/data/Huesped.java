@@ -4,47 +4,46 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import moviles2.mi_aplicacion_2.data.HuspedContract.HuespedEntry;
 public class Huesped {
-    private String usuario;
-    private String password;
-    private String nombre;
+    private String fullnombre;
     private String email;
+    private String nacionalidad;
+    private String password;
 
-    public Huesped(String usuario, String password, String nombre, String email) {
-        this.usuario = usuario;
-        this.password = password;
-        this.nombre = nombre;
+
+    public Huesped(String fullnombre, String email, String nacionalidad, String password) {
+        this.fullnombre = fullnombre;
         this.email = email;
+        this.nacionalidad = nacionalidad;
+        this.password = password;
     }
 
     public ContentValues toContentValues() {
         ContentValues values = new ContentValues();
-        values.put(HuespedEntry.col_usuario, usuario);
-        values.put(HuespedEntry.col_password, password);
-        values.put(HuespedEntry.col_nombre, nombre);
+        values.put(HuespedEntry.col_nombre, fullnombre);
         values.put(HuespedEntry.col_email, email);
+        values.put(HuespedEntry.col_nacionalidad, nacionalidad);
+        values.put(HuespedEntry.col_password, password);
         return values;
     }
 
     public Huesped(Cursor cursor){
-        this.usuario = cursor.getString( cursor.getColumnIndex( HuespedEntry.col_usuario ) );
-        this.password = cursor.getString( cursor.getColumnIndex( HuespedEntry.col_password ) );
-        this.nombre = cursor.getString( cursor.getColumnIndex( HuespedEntry.col_nombre ) );
+        this.fullnombre = cursor.getString( cursor.getColumnIndex( HuespedEntry.col_nombre ) );
         this.email = cursor.getString( cursor.getColumnIndex( HuespedEntry.col_email ) );
+        this.nacionalidad = cursor.getString( cursor.getColumnIndex( HuespedEntry.col_nacionalidad ) );
+        this.password = cursor.getString( cursor.getColumnIndex( HuespedEntry.col_password ) );
     }
 
     public String getUsuario() {
-        return usuario;
+        return fullnombre;
     }
-
+    public String getEmail() {
+        return email;
+    }
+    public String getNombre() {
+        return nacionalidad;
+    }
     public String getPassword() {
         return password;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getEmail() {
-        return email;
-    }
 }

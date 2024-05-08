@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.os.Build;
 import moviles2.mi_aplicacion_2.data.TelefonoContract.TelefonoEntry;
+import moviles2.mi_aplicacion_2.data.SpaContract.SpaEntry;
 
 import androidx.annotation.Nullable;
 
@@ -24,18 +25,30 @@ public class HotelDBHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("CREATE TABLE "+ HuespedEntry.TABLE_NAME + " (" +
                 HuespedEntry._ID+" INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                HuespedEntry.col_usuario+" TEXT NOT NULL, " +
-                HuespedEntry.col_password+" TEXT NOT NULL, " +
                 HuespedEntry.col_nombre+" TEXT NOT NULL, " +
                 HuespedEntry.col_email+" TEXT NOT NULL, " +
-                "UNIQUE ("+HuespedEntry.col_usuario+"), UNIQUE("+HuespedEntry.col_email+"))");
+                HuespedEntry.col_nacionalidad+" TEXT NOT NULL, " +
+                HuespedEntry.col_password+" TEXT NOT NULL, " +
+                "UNIQUE("+HuespedEntry.col_email+"))");
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TelefonoEntry.TABLE_NAME + "("+
-                HuespedEntry.col_usuario+" TEXT NOT NULL, " +
+                HuespedEntry.col_nombre+" TEXT NOT NULL, " +
                 TelefonoEntry.col_telefono+ " NUMERIC(12,0) NOT NULL,"+
                 "UNIQUE ("+TelefonoEntry.col_telefono+"),"+
-                "FOREIGN KEY ("+HuespedEntry.col_usuario+") " +
-                "REFERENCES "+ HuespedEntry.TABLE_NAME + "("+ HuespedEntry.col_usuario+") " +
+                "FOREIGN KEY ("+HuespedEntry.col_nombre+") " +
+                "REFERENCES "+ HuespedEntry.TABLE_NAME + "("+ HuespedEntry.col_nombre+") " +
+                "ON DELETE CASCADE)");
+
+        sqLiteDatabase.execSQL(" CREATE TABLE " + SpaEntry.TABLE_NAME + "("+
+                SpaEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT ," +
+                SpaEntry.col_nombre_husped + " TEXT NOT NULL, "+
+                SpaEntry.col_fecha + " DATE NOT NULL, "+
+                SpaEntry.col_tratamiento + " TEXT NOT NULL, " +
+                SpaEntry.col_email + " TEXT NOT NULL," +
+                "FOREIGN KEY (" + SpaEntry.col_nombre_husped + ")" +
+                "REFERENCES " +HuespedEntry.TABLE_NAME + "(" +HuespedEntry.col_nombre + ")," +
+                "FOREIGN KEY (" + SpaEntry.col_email + ")" +
+                "REFERENCES " + HuespedEntry.TABLE_NAME + "(" +HuespedEntry.col_email+")" +
                 "ON DELETE CASCADE)");
     }
 
@@ -84,7 +97,7 @@ public class HotelDBHelper extends SQLiteOpenHelper{
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder builder = new SQLiteQueryBuilder();
         String tables = HuespedEntry.TABLE_NAME+" INNER JOIN "+TelefonoEntry.TABLE_NAME+
-                " on "+HuespedEntry.TABLE_NAME+"."+HuespedEntry.col_usuario+" = "+TelefonoEntry.TABLE_NAME+"."+HuespedEntry.col_usuario;
+                " on "+HuespedEntry.TABLE_NAME+"."+HuespedEntry.col_nombre+" = "+TelefonoEntry.TABLE_NAME+"."+HuespedEntry.col_nombre;
         builder.setTables( tables);
         //String columnas[] = new String["user","name","tel"];
         //return builder.query( db, columnas,null,null,null,null,null );
@@ -95,7 +108,7 @@ public class HotelDBHelper extends SQLiteOpenHelper{
         Cursor c = getReadableDatabase().query(
                 HuespedEntry.TABLE_NAME,
                 null,
-                HuespedEntry.col_usuario + " LIKE ?",
+                HuespedEntry.col_nombre + " LIKE ?",
                 new String[]{user},
                 null,
                 null,
@@ -107,7 +120,7 @@ public class HotelDBHelper extends SQLiteOpenHelper{
         Cursor c = getReadableDatabase().query(
                 HuespedEntry.TABLE_NAME,
                 null,
-                HuespedEntry.col_usuario + " LIKE ? AND "+HuespedEntry.col_password + " LIKE ?",
+                HuespedEntry.col_nombre + " LIKE ? AND "+HuespedEntry.col_password + " LIKE ?",
                 new String[]{user,password},
                 null,
                 null,
@@ -117,7 +130,7 @@ public class HotelDBHelper extends SQLiteOpenHelper{
     public int deleteHuesped(String user) {
         return getWritableDatabase().delete(
                 HuespedEntry.TABLE_NAME,
-                HuespedEntry.col_usuario + " LIKE ?",
+                HuespedEntry.col_nombre + " LIKE ?",
                 new String[]{user});
     }
 
@@ -125,7 +138,7 @@ public class HotelDBHelper extends SQLiteOpenHelper{
         return getWritableDatabase().update(
                 HuespedEntry.TABLE_NAME,
                 huesped.toContentValues(),
-                HuespedEntry.col_usuario + " LIKE ?",
+                HuespedEntry.col_nombre + " LIKE ?",
                 new String[]{user}
         );
     }
