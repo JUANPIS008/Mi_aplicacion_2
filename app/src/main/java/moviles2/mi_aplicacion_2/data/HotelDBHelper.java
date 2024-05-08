@@ -24,31 +24,37 @@ public class HotelDBHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("CREATE TABLE "+ HuespedEntry.TABLE_NAME + " (" +
-                HuespedEntry._ID+" INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                HuespedEntry.col_cedula+" NUMERIC PRIMARY KEY, " +
                 HuespedEntry.col_nombre+" TEXT NOT NULL, " +
                 HuespedEntry.col_email+" TEXT NOT NULL, " +
                 HuespedEntry.col_nacionalidad+" TEXT NOT NULL, " +
-                HuespedEntry.col_password+" TEXT NOT NULL, " +
-                "UNIQUE("+HuespedEntry.col_email+"))");
+                HuespedEntry.col_password+" TEXT NOT NULL)");
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TelefonoEntry.TABLE_NAME + "("+
-                HuespedEntry.col_nombre+" TEXT NOT NULL, " +
-                TelefonoEntry.col_telefono+ " NUMERIC(12,0) NOT NULL,"+
-                "UNIQUE ("+TelefonoEntry.col_telefono+"),"+
-                "FOREIGN KEY ("+HuespedEntry.col_nombre+") " +
-                "REFERENCES "+ HuespedEntry.TABLE_NAME + "("+ HuespedEntry.col_nombre+") " +
+                HuespedEntry.col_cedula+" NUMERIC NOT NULL PRIMARY KEY, " +
+                TelefonoEntry.col_telefono+ " NUMERIC(12,0) NOT NULL PRIMARY KEY,"+
+                "PRIMARY KEY("+HuespedEntry.col_cedula+","+TelefonoEntry.col_telefono+"),"+
+                "FOREIGN KEY ("+HuespedEntry.col_cedula+") " +
+                "REFERENCES "+ HuespedEntry.TABLE_NAME + "("+ HuespedEntry.col_cedula+") " +
                 "ON DELETE CASCADE)");
 
         sqLiteDatabase.execSQL(" CREATE TABLE " + SpaEntry.TABLE_NAME + "("+
                 SpaEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT ," +
                 SpaEntry.col_nombre_husped + " TEXT NOT NULL, "+
+                HuespedEntry.col_cedula + "NUMERIC NOT NULL,"+
                 SpaEntry.col_fecha + " DATE NOT NULL, "+
                 SpaEntry.col_tratamiento + " TEXT NOT NULL, " +
                 SpaEntry.col_email + " TEXT NOT NULL," +
-                "FOREIGN KEY (" + SpaEntry.col_nombre_husped + ")" +
-                "REFERENCES " +HuespedEntry.TABLE_NAME + "(" +HuespedEntry.col_nombre + ")," +
-                "FOREIGN KEY (" + SpaEntry.col_email + ")" +
-                "REFERENCES " + HuespedEntry.TABLE_NAME + "(" +HuespedEntry.col_email+")" +
+                TelefonoEntry.col_telefono + "NUMERIC NOT NULL,"+
+
+                "FOREIGN KEY (" + HuespedEntry.col_cedula + ")" +
+                "REFERENCES " +HuespedEntry.TABLE_NAME + "(" +HuespedEntry.col_cedula + ")," +
+
+                "FOREIGN KEY (" + HuespedEntry.col_cedula + ")" +
+                "REFERENCES " + TelefonoEntry.TABLE_NAME + "(" +TelefonoEntry.col_cedula+"), " +
+
+                "FOREIGN KEY (" + TelefonoEntry.col_telefono + ")" +
+                "REFERENCES " +TelefonoEntry.TABLE_NAME + "(" +TelefonoEntry.col_telefono + ")" +
                 "ON DELETE CASCADE)");
     }
 

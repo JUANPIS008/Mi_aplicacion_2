@@ -8,4 +8,12 @@ public class TelefonoSpa {
         this.nombre_huesped = nombre_huesped;
         this.numero_telefonico = numero_telefonico;
     }
+
+    public String getNombre_huesped() {
+        return nombre_huesped;
+    }
+
+    public String getNumero_telefonico() {
+        return numero_telefonico;
+    }
 }
